@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Dual Shock Socket.io</title>
+    </head>
+
+    <body>
+        <h1>Communicating with socket .io!</h1>
+        
+		<nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/DualShock.html">DualShock </a></li>
+        </ul>
+        </nav>
+		
+		<p><input type="button" value="Poke the server" id="poke" /></p>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect('192.168.1.108:8080');
+            socket.on('message', function(message) {
+                //alert('The server has a message for you: ' + message);
+            })
+            $('#poke').click(function () {
+                socket.emit('message', 'Hi server, how are you?');
+            })
+        </script>
+    </body>
+</html>
